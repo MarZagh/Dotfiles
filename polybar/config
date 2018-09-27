@@ -1,0 +1,195 @@
+; New config file for polybar on 18/08/2018
+
+; Simple bar setup. Just top bar, left i3 and window info, middle clock and music info, right network, battery and volume. artwiz font + Siji icons.
+
+[section/bar]
+monitor = 
+font-0 = artwiz snap.se:pixelsize=9:antialiasing=false;2
+font-1 = Wuncon Siji:size=10;2
+font-2 = Unifont:size=9;2.5
+cursor-click = pointer
+
+[bar/top]
+inherit = section/bar
+override-redirect = false
+bottom = false
+fixed-center = true
+width = 100%
+height = 3%
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+module-margin = 0
+modules-left = i3 title
+modules-center = time spotify mpd
+modules-right = ethernet wlan bat0 bat1 pulseaudio
+separator = |
+spacing = 0
+;locale = de_DE.UTF-8
+wm-restack =
+tray-position = right
+
+[global/wm]
+margin-bottom = 0
+margin-top = 0
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = false
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+format-foreground =
+format-background =
+format-underline =
+format-overline =
+format-spacing =
+format-padding = 1
+format-margin =
+format-offset =
+
+[module/i3]
+type = internal/i3
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+fuzzy-match = true
+format = <label-state> <label-mode>
+label-focused = %icon%%index%
+label-focused-foreground = ${xrdb:color1}
+label-focused-padding = 1
+label-unfocused = %icon%%index%
+label-unfocused-padding = 1
+label-visible = %icon%%index%
+label-visible-foreground = ${xrdb:color8}
+label-urgent = %icon%%index%
+label-urgent-foreground = ${xrdb:background}
+label-urgent-background = ${xrdb:foreground}
+label-urgent-padding = 1
+ws-icon-0 = "Browser;"
+ws-icon-1 = "Terminal;"
+ws-icon-2 = "Messaging;"
+ws-icon-3 = "Mail;"
+ws-icon-4 = "Music;"
+
+[module/title]
+type = internal/xwindow
+;format = %{A1:i3-msg "gaps inner current set 100; gaps outer current set 10":}%{A} %{A1:i3-msg "gaps inner current set 30; gaps outer current set 0":}%{A} %{A1:rofi -show window:} <label>%{A} 
+format = %{A1:rofi -show window:} <label>%{A} 
+label = %title:0:50:...%
+label-empty = i3
+
+[module/time]
+type = internal/date
+interval = 0.5
+date = 
+date-alt = "%d/%m/%y - "
+time = %I:%M %p
+time-alt = %I:%M:%S %p
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color6}
+label = %date%%time%
+
+[module/spotify]
+type = custom/script
+exec = "~/Scripts/Bash/spotifyinfo.sh"
+exec-if = if [ "$(playerctl -p spotify status)" = "Playing" ] || [ "$(playerctl -p spotify status)" = "Paused" ]; then true; else false; fi
+;click-left = playerctl -p spotify play-pause
+interval = 0.5
+
+[module/mpd]
+type = internal/mpd
+format-online = <toggle> %{A1:i3-msg workspace 10\:Music:}<label-song>%{A}
+format-offline =
+label-song = %title% - %artist%
+label-time = (%elapsed%/%total%)
+icon-play-foreground = ${xrdb:color3}
+icon-pause-foreground = ${xrdb:color3}
+icon-next-foreground = ${xrdb:color3}
+icon-prev-foreground = ${xrdb:color3}
+icon-play = 
+icon-pause = 
+icon-next = 
+icon-prev = 
+
+[section/network]
+type = internal/network
+interval = 3.0
+
+[module/ethernet]
+inherit = section/network
+interface = enp0s25
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${xrdb:color2}
+format-connected = <label-connected>
+label-connected = %local_ip%
+
+[module/wlan]
+inherit = section/network
+interface = wlp3s0
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+ramp-signal-foreground = ${xrdb:color2}
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+
+[section/batterymodule]
+type = internal/battery
+poll-interval = 5
+time-format = %H:%M
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+label-charging = %percentage%% 
+label-discharging = %percentage%% 
+label-full = %percentage%% 
+format-charging-prefix-foreground = #aaa
+format-discharging-prefix-foreground = #aaa
+ramp-capacity-foreground = ${xrdb:color4}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+animation-charging-foreground = ${xrdb:color4}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+
+[module/bat0]
+inherit = section/batterymodule
+battery = BAT0
+adapter = AC
+
+[module/bat1]
+inherit = section/batterymodule
+battery = BAT1
+adapter = AC
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = true
+interval = 5
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${xrdb:color5}
+format-volume = <label-volume>
+format-muted-prefix-foreground = ${xrdb:color5}
+format-muted-prefix = " "
+format-muted = <label-muted>
+label-volume = %percentage%%
+label-muted = %percentage%%
+ramp-volume-foreground = ${xrdb:color5}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-volume-5 = 
+
+
+

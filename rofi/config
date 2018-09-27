@@ -1,0 +1,7 @@
+rofi.width: 40
+rofi.theme: sidebar
+rofi.theme: .cache/wal/colors-rofi-dark.rasi
+rofi.font:  Unifont 12
+rofi.modi:  run,drun,window
+rofi.show-icons: true
+rofi.sidebar-mode: true
