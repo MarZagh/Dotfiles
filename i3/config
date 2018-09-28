@@ -183,8 +183,8 @@ bindsym $mod+Shift+t exec $email
 bindsym $mod+Shift+s exec $musicplayer
 bindsym $mod+Shift+m exec $mounttool
 bindsym $mod+Shift+b exec $bluetooth
-bindsym $mod+m exec --no-startup-id "if pgrep -u $UID -x mpd >/dev/null; then :; else mpd; fi"
-bindsym $mod+Mod1+m exec --no-startup-id "if pgrep -u $UID -x mpd >/dev/null; then killall mpd; fi"
+bindsym $mod+m exec --no-startup-id "if pgrep -u $UID -x mopidy >/dev/null; then :; else mopidy; fi"
+bindsym $mod+Mod1+m exec --no-startup-id "if pgrep -u $UID -x mopidy >/dev/null; then killall mopidy; fi"
 bindsym Menu exec rofi -show drun
 
 # i3-scrot for screenshots
