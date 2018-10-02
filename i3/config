@@ -60,12 +60,12 @@ font pango:Nerd Font 12
 
 ### STARTUP
 
-exec xset -b
-exec --no-startup-id light-locker --lock-on-suspend
+exec --no-startup-id xset -b
+#exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id killall xcompmgr
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 exec --no-startup-id dunst
-exec wal -R
+exec --no-startup-id wal -R
 #exec_always --no-startup-id  nm-applet
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
 
@@ -135,7 +135,7 @@ set $ws3 "3:Terminal"
 set $ws4 "4:Terminal"
 set $ws5 "5:Terminal"
 set $ws6 "6:Terminal"
-set $ws7 "7:Terminal"
+set $ws7 "7:Games"
 set $ws8 "8:Messaging"
 set $ws9 "9:Mail"
 set $ws10 "10:Music"
@@ -163,10 +163,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 ### RESIZING
-bindsym $mod+plus        resize grow width 5 px or 5 ppt
-bindsym $mod+Shift+plus  resize shrink width 5 px or 5 ppt
-bindsym $mod+minus       resize grow height 5 px or 5 ppt
-bindsym $mod+Shift+minus resize shrink height 5 px or 5 ppt
+bindsym $mod+w        resize grow width 5 px or 5 ppt
+bindsym $mod+Shift+w  resize shrink width 5 px or 5 ppt
+bindsym $mod+e        resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+e  resize shrink height 5 px or 5 ppt
 
 ### CHANGE GAP SIZE
 bindsym $mod+o gaps outer current plus 10
@@ -196,16 +196,13 @@ bindsym Mod5+Print exec --no-startup-id i3-scrot -s
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
-# bindsym XF86AudioPlay exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl play-pause; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc toggle; fi"
-# bindsym XF86AudioNext exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl next; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc next; fi"
-# bindsym XF86AudioPrev exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl previous; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc prev; fi"
-# bindsym XF86AudioStop exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl stop; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc stop; fi"
 bindsym XF86AudioPlay exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl play-pause; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc toggle; fi"
 bindsym XF86AudioNext exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl next; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc next; fi"
 bindsym XF86AudioPrev exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl previous; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc prev; fi"
 bindsym XF86AudioStop exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl stop; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc stop; fi"
-bindsym XF86ScreenSaver exec dm-tool lock
+bindsym XF86ScreenSaver exec --no-startup-id sh ~/Scripts/Bash/menu/lock.sh
 bindsym XF86AudioMicMute exec amixer set Capture toggle
+bindsym XF86TouchpadToggle exec sh ~/Scripts/Bash/control/trackpad_toggle.sh
 bindsym Mod4+t exec setxkbmap -layout de -option caps:swapescape
 bindsym Mod4+r exec setxkbmap -layout us -variant altgr-intl -option caps:swapescape
 bindsym Mod4+Shift+c exec --no-startup-id "killall compton; compton"

@@ -74,6 +74,7 @@ ws-icon-1 = "Terminal;"
 ws-icon-2 = "Messaging;"
 ws-icon-3 = "Mail;"
 ws-icon-4 = "Music;"
+ws-icon-5 = "Games;"
 
 [module/title]
 type = internal/xwindow
