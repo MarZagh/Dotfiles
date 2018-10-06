@@ -61,11 +61,12 @@ font pango:Nerd Font 12
 ### STARTUP
 
 exec --no-startup-id xset -b
+exec --no-startup-id wal -R
 #exec --no-startup-id light-locker --lock-on-suspend
+exec --no-startup-id redshift
 exec --no-startup-id killall xcompmgr
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 exec --no-startup-id dunst
-exec --no-startup-id wal -R
 #exec_always --no-startup-id  nm-applet
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
 
@@ -202,7 +203,7 @@ bindsym XF86AudioPrev exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/nu
 bindsym XF86AudioStop exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl stop; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc stop; fi"
 bindsym XF86ScreenSaver exec --no-startup-id sh ~/Scripts/Bash/menu/lock.sh
 bindsym XF86AudioMicMute exec amixer set Capture toggle
-bindsym XF86TouchpadToggle exec sh ~/Scripts/Bash/control/trackpad_toggle.sh
-bindsym Mod4+t exec setxkbmap -layout de -option caps:swapescape
-bindsym Mod4+r exec setxkbmap -layout us -variant altgr-intl -option caps:swapescape
+bindsym XF86TouchpadToggle exec --no-startup-id sh ~/Scripts/Bash/control/trackpad_toggle.sh
+bindsym Mod4+t --no-startup-id exec setxkbmap -layout de -option caps:swapescape
+bindsym Mod4+r --no-startup-id exec setxkbmap -layout us -variant altgr-intl -option caps:swapescape
 bindsym Mod4+Shift+c exec --no-startup-id "killall compton; compton"
