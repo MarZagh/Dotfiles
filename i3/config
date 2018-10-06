@@ -6,16 +6,6 @@
 # Mod key is Windows key
 set $mod Mod4
 
-# Standard applications
-set $terminal urxvt -e fish
-set $launcher lighthouse | bash
-set $browser qutebrowser
-set $email thunderbird
-set $editor vim
-set $musicplayer spotify
-set $mounttool udiskie -t
-set $bluetooth blueman-applet
-
 # test colors from wal
 set_from_resource $color0 i3wm.color0 #f0f0f0
 set_from_resource $color1 i3wm.color1 #f0f0f0
@@ -46,8 +36,8 @@ for_window [class="albert"] border pixel 0
 for_window [title="floatingterm"] floating enable
 for_window [title="Zeichentabelle"] floating enable
 
-set $ingapsize 20
-set $outgapsize 0
+set $ingapsize 10
+set $outgapsize 10
 
 gaps inner $ingapsize
 gaps outer $outgapsize
@@ -55,18 +45,15 @@ gaps outer $outgapsize
 #smart_gaps on
 smart_borders on
 
-font pango:Nerd Font 12
+font pango:Iosevka 12
 
 
 ### STARTUP
 
 exec xset -b
-exec --no-startup-id light-locker --lock-on-suspend
-exec --no-startup-id killall xcompmgr
-exec --no-startup-id compton --config ~/.config/compton.conf -b
-exec --no-startup-id dunst
+exec --no-startup-id compton
+exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option caps:swapescape
 exec wal -R
-#exec_always --no-startup-id  nm-applet
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
 
 
@@ -163,26 +150,37 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 ### RESIZING
-bindsym $mod+plus        resize grow width 5 px or 5 ppt
-bindsym $mod+Shift+plus  resize shrink width 5 px or 5 ppt
-bindsym $mod+minus       resize grow height 5 px or 5 ppt
-bindsym $mod+Shift+minus resize shrink height 5 px or 5 ppt
+bindsym $mod+w        resize grow width 5 px or 5 ppt
+bindsym $mod+Shift+w  resize shrink width 5 px or 5 ppt
+bindsym $mod+e        resize grow height 5 px or 5 ppt
+bindsym $mod+Shift+e  resize shrink height 5 px or 5 ppt
 
 ### CHANGE GAP SIZE
+# default inner gaps 10, outer gaps 10
 bindsym $mod+o gaps outer current plus 10
 bindsym $mod+Shift+o gaps outer current minus 10
 bindsym $mod+i gaps inner current plus 10
 bindsym $mod+Shift+i gaps inner current minus 10
 bindsym $mod+u gaps inner current set $ingapsize; gaps outer current set $outgapsize
 
+bindsym $mod+F1 gaps inner current set 5; gaps outer current set 30
+bindsym $mod+F2 gaps inner current set 10; gaps outer current set 60
+bindsym $mod+F3 gaps inner current set 15; gaps outer current set 90
+bindsym $mod+F4 gaps inner current set 20; gaps outer current set 120
+bindsym $mod+F5 gaps inner current set 10; gaps outer current set 30
+bindsym $mod+F6 gaps inner current set 20; gaps outer current set 60
+bindsym $mod+F7 gaps inner current set 30; gaps outer current set 90
+bindsym $mod+F8 gaps inner current set 40; gaps outer current set 120
+bindsym $mod+F9 gaps inner current set 20; gaps outer current set 30
+bindsym $mod+F10 gaps inner current set 40;  gaps outer current set 60
+bindsym $mod+F11 gaps inner current set 60;  gaps outer current set 90
+bindsym $mod+F12 gaps inner current set 80;  gaps outer current set 120
+
 ### START APPLICATIONS
-bindsym $mod+Shift+f exec $browser
-bindsym $mod+Return exec $terminal
-bindsym $mod+Shift+Return exec urxvt -T floatingterm -e fish
-bindsym $mod+Shift+t exec $email
-bindsym $mod+Shift+s exec $musicplayer
-bindsym $mod+Shift+m exec $mounttool
-bindsym $mod+Shift+b exec $bluetooth
+bindsym $mod+Shift+f exec qutebrowser
+bindsym $mod+Return exec urxvt -e fish
+bindsym $mod+Shift+Return exec urxvt -T floatingterm -e fish 
+bindsym $mod+Shift+t exec thunderbird
 bindsym $mod+m exec --no-startup-id "if pgrep -u $UID -x mopidy >/dev/null; then :; else mopidy; fi"
 bindsym $mod+Mod1+m exec --no-startup-id "if pgrep -u $UID -x mopidy >/dev/null; then killall mopidy; fi"
 bindsym Menu exec rofi -show drun
@@ -204,8 +202,6 @@ bindsym XF86AudioPlay exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/nu
 bindsym XF86AudioNext exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl next; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc next; fi"
 bindsym XF86AudioPrev exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl previous; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc prev; fi"
 bindsym XF86AudioStop exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl stop; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc stop; fi"
-bindsym XF86ScreenSaver exec dm-tool lock
-bindsym XF86AudioMicMute exec amixer set Capture toggle
 bindsym Mod4+t exec setxkbmap -layout de -option caps:swapescape
 bindsym Mod4+r exec setxkbmap -layout us -variant altgr-intl -option caps:swapescape
 bindsym Mod4+Shift+c exec --no-startup-id "killall compton; compton"
