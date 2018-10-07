@@ -10,7 +10,6 @@ Details:
 + **Shell**: fish
 + **Terminal Emulator**: urxvt
 + **Font**: Iosevka
-+ **Programs**: cava. neofetch, mopidy, pipes.sh, cmatrix
 + **Dotfiles**: https://github.com/MarZagh/Dotfiles
 
 Btw I use Arch
