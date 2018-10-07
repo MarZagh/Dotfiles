@@ -50,21 +50,14 @@ font pango:Iosevka 12
 
 ### STARTUP
 
-<<<<<<< HEAD
 exec --no-startup-id xset -b
 exec --no-startup-id wal -R
 #exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id redshift
-exec --no-startup-id killall xcompmgr
-exec --no-startup-id compton --config ~/.config/compton.conf -b
 exec --no-startup-id dunst
 #exec_always --no-startup-id  nm-applet
-=======
-exec xset -b
 exec --no-startup-id compton
 exec --no-startup-id setxkbmap -layout us -variant altgr-intl -option caps:swapescape
-exec wal -R
->>>>>>> 660ca1c28c81f8a2b15c10e5629efaa465661c2b
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
 
 
