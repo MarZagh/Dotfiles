@@ -6,20 +6,20 @@
 monitor = 
 font-0 = artwiz snap.se:pixelsize=9:antialiasing=false;2
 font-1 = Wuncon Siji:size=10;2
-font-2 = Unifont:size=9;2.5
+font-2 = Unifont:size=8;1
 cursor-click = pointer
 
 [bar/top]
 inherit = section/bar
 override-redirect = false
-bottom = false
+bottom = true
 fixed-center = true
 width = 100%
 height = 3%
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
 module-margin = 0
-modules-left = i3 title
+modules-left = bspwm i3
 modules-center = time spotify mpd
 modules-right = ethernet wlan bat0 bat1 pulseaudio
 separator = |
@@ -27,6 +27,9 @@ spacing = 0
 ;locale = de_DE.UTF-8
 wm-restack =
 tray-position = right
+line-size = 2
+border-size = 2
+border-color = ${xrdb:background}
 
 [global/wm]
 margin-bottom = 0
@@ -44,7 +47,7 @@ compositing-underline = over
 compositing-border = over
 format-foreground =
 format-background =
-format-underline =
+format-underline = 
 format-overline =
 format-spacing =
 format-padding = 1
@@ -58,17 +61,51 @@ index-sort = true
 enable-click = true
 fuzzy-match = true
 format = <label-state> <label-mode>
-label-focused = %icon%%index%
-label-focused-foreground = ${xrdb:color1}
-label-focused-padding = 1
-label-unfocused = %icon%%index%
-label-unfocused-padding = 1
-label-visible = %icon%%index%
+;label-focused = %icon%%index%
+label-focused = %index%
+label-focused-foreground = ${xrdb:foreground}
+label-focused-overline = ${xrdb:color1}
+label-focused-padding = 2
+;label-unfocused = %icon%%index%
+label-unfocused = %index%
+label-unfocused-foreground = ${xrdb:color8}
+label-unfocused-padding = 2
+;label-visible = %icon%%index%
+label-visible = %index%
 label-visible-foreground = ${xrdb:color8}
-label-urgent = %icon%%index%
+;label-urgent = %icon%%index%
+label-urgent = %index%
 label-urgent-foreground = ${xrdb:background}
 label-urgent-background = ${xrdb:foreground}
+
 label-urgent-padding = 1
+ws-icon-0 = "Browser;"
+ws-icon-1 = "Terminal;"
+ws-icon-2 = "Messaging;"
+ws-icon-3 = "Mail;"
+ws-icon-4 = "Music;"
+ws-icon-5 = "Games;"
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+inline-mode = false
+enable-click = true
+enable-scroll = false
+fuzzy-match = true
+format = <label-state> <label-mode>
+label-focused = %icon%%index%
+label-focused-foreground = ${xrdb:foreground}
+label-focused-overline = ${xrdb:color1}
+label-focused-underline = ${xrdb:color1}
+label-focused-margin = 1
+label-occupied = %icon%%index%
+label-occupied-foreground = ${xrdb:color8}
+label-occupied-underline = ${xrdb:color8}
+label-occupied-margin = 1
+label-empty = %icon%%index%
+label-empty-foreground = ${xrdb:color8}
+label-empty-margin = 1
 ws-icon-0 = "Browser;"
 ws-icon-1 = "Terminal;"
 ws-icon-2 = "Messaging;"
@@ -104,7 +141,7 @@ interval = 0.5
 
 [module/mpd]
 type = internal/mpd
-format-online = <toggle> %{A1:i3-msg workspace 10\:Music:}<label-song>%{A}
+format-online = <toggle> <label-song>
 format-offline =
 label-song = %title% - %artist%
 label-time = (%elapsed%/%total%)
@@ -184,6 +221,7 @@ format-muted-prefix = " "
 format-muted = <label-muted>
 label-volume = %percentage%%
 label-muted = %percentage%%
+label-muted-foreground = ${xrdb:color8}
 ramp-volume-foreground = ${xrdb:color5}
 ramp-volume-0 = 
 ramp-volume-1 = 
