@@ -22,8 +22,8 @@ sensitivity = 5
 # The number of bars (0-200). 0 sets it to auto (fill up console).
 # Bars' width and space between bars in number of characters.
 bars = 200
-; bar_width = 2
-; bar_spacing = 1
+bar_width = 2
+bar_spacing = 1
 
 
 # Lower and higher cutoff frequencies for lowest and highest bars
@@ -104,8 +104,8 @@ channels = stereo
 # not able to restore color definitions on exit, simply restart your terminal to restore colors.
 gradient = 1
 gradient_count = 2
-gradient_color_1 = "#E5582A"
-gradient_color_2 = "#9dafc2"
+gradient_color_1 = "#fb4934"
+gradient_color_2 = "#b8bb26"
 
 
 [smoothing]

@@ -1,5 +1,5 @@
 [global]
-font = Iosevka Term 11
+font = mono 12
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
@@ -38,7 +38,7 @@ alignment = center
 # window allows bounces back and forth.
 # This option conflicts with "word_wrap".
 # Set to 0 to disable.
-bounce_freq = 0
+bounce_freq = 5
 
 # Show age of message if message is older than show_age_threshold
 # seconds.
@@ -79,7 +79,7 @@ shrink = no
 # The transparency of the window.  Range: [0; 100].
 # This option will only work if a compositing windowmanager is
 # present (e.g. xcompmgr, compiz, etc.).
-transparency = 5
+transparency = 30
 
 # Don't remove messages, if the user is idle (no mouse or keyboard input)
 # for longer than idle_threshold seconds.
@@ -123,10 +123,10 @@ line_height = 3
 separator_height = 2
 
 # Padding between text and separator.
-padding = 6
+padding = 15
 
 # Horizontal padding.
-horizontal_padding = 6
+horizontal_padding = 15
 
 # Define a color for the separator.
 # possible values are:
@@ -134,7 +134,7 @@ horizontal_padding = 6
 #  * foreground: use the same color as the foreground;
 #  * frame: use the same color as the frame;
 #  * anything else will be interpreted as a X color.
-separator_color = frame
+separator_color = auto
 
 # Print a notification on startup.
 # This is mainly for error detection, since dbus (re-)starts dunst
@@ -148,13 +148,13 @@ dmenu = /usr/bin/dmenu -p dunst:
 browser = /usr/bin/firefox -new-tab
 
 # Align icons left/right/off
-icon_position = off
+icon_position = left
 max_icon_size = 80
 
 # Paths to default icons.
 icon_folders = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/
 
-frame_width = 3
+frame_width = 2
 frame_color = "#8EC07C"
 
 [shortcuts]

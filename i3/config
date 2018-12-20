@@ -15,36 +15,31 @@ set_from_resource $color4 i3wm.color4 #f0f0f0
 set_from_resource $color5 i3wm.color5 #f0f0f0
 set_from_resource $color6 i3wm.color6 #f0f0f0
 set_from_resource $color7 i3wm.color7 #f0f0f0
+set_from_resource $color8 i3wm.color8 #f0f0f0
 set_from_resource $fg     i3wm.foreground #ffffff
 set_from_resource $bg     i3wm.background #000000
 # class                 border  backgr. text    indicator child_border
 client.focused          $color1 $color1 #00ff00 $color1   $fg
-client.focused_inactive #333333 #5f676a #ffffff #484e50   $color3
-client.unfocused        #333333 #222222 #888888 #292d2e   $color3
-client.urgent           #2f343a #900000 #ffffff #900000   $color1
+client.focused_inactive #333333 #5f676a #ffffff #484e50   $color8
+client.unfocused        #333333 #222222 #888888 #292d2e   $color8
+client.urgent           #2f343a #900000 #ffffff #900000   $color2
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       $bg
-# In order to determine which window is active even with border pixel 0,
-#  compton has its inactive_opacity option enabled.
 for_window [class="^.*"] border pixel 4
-for_window [class="Spotify"] move container to workspace $ws10
-for_window [class="Thunderbird"] move container to workspace $ws9
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="franz"] move scratchpad
-for_window [class="albert"] border pixel 0
 for_window [title="floatingterm"] floating enable
 for_window [title="Zeichentabelle"] floating enable
+for_window [title="xclock"] floating enable
 
 
-set $ingapsize 10
-set $outgapsize 10
+set $ingapsize 20
+set $outgapsize 20
 
 gaps inner $ingapsize
 gaps outer $outgapsize
 
 #smart_gaps on
-smart_borders on
+#smart_borders off
 
 font pango:Iosevka 12
 
@@ -53,12 +48,13 @@ font pango:Iosevka 12
 
 #exec --no-startup-id light-locker --lock-on-suspend
 exec --no-startup-id redshift
-exec --no-startup-id dunst
+exec_always --no-startup-id ~/Scripts/Bash/post_wal_script.sh
+#exec --no-startup-id dunst  NOTE: dunst is started by post-wal-script.sh
 #exec_always --no-startup-id  nm-applet
-#exec --no-startup-id compton
+exec --no-startup-id compton
 exec_always --no-startup-id  ~/.config/polybar/launch.sh
 exec --no-startup-id killall alternating_layouts.py
-exec --no-startup-id alternating_layouts.py
+#exec --no-startup-id alternating_layouts.py
 focus_follows_mouse yes
 
 ### KEY BINDINGS
@@ -187,8 +183,8 @@ bindsym $mod+Shift+f exec qutebrowser
 bindsym $mod+Return exec urxvt #-e fish
 bindsym $mod+Shift+Return exec urxvt -T floatingterm #-e fish 
 bindsym $mod+Shift+t exec thunderbird
-bindsym $mod+m exec --no-startup-id "if pgrep -u $UID -x mopidy >/dev/null; then :; else mopidy; fi"
-bindsym $mod+Mod1+m exec --no-startup-id "killall mopidy"
+bindsym $mod+m exec --no-startup-id "if pgrep -u $UID -x mpd >/dev/null; then :; else mpd; fi"
+bindsym $mod+Mod1+m exec --no-startup-id "killall mpd"
 bindsym Menu exec rofi -show drun
 
 # i3-scrot for screenshots
@@ -204,10 +200,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
 # bindsym XF86AudioNext exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl next; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc next; fi"
 # bindsym XF86AudioPrev exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl previous; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc prev; fi"
 # bindsym XF86AudioStop exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl stop; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc stop; fi"
-bindsym XF86AudioPlay exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl play-pause; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc toggle; fi"
-bindsym XF86AudioNext exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl next; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc next; fi"
-bindsym XF86AudioPrev exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl previous; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc prev; fi"
-bindsym XF86AudioStop exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl stop; fi && if pgrep -u $UID -x mopidy >/dev/null; then mpc stop; fi"
+bindsym XF86AudioPlay exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl play-pause; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc toggle; fi"
+bindsym XF86AudioNext exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl next; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc next; fi"
+bindsym XF86AudioPrev exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl previous; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc prev; fi"
+bindsym XF86AudioStop exec --no-startup-id "if pgrep -u $UID -x spotify >/dev/null; then playerctl stop; fi && if pgrep -u $UID -x mpd >/dev/null; then mpc stop; fi"
 bindsym XF86ScreenSaver exec --no-startup-id sh ~/Scripts/Bash/menu/lock.sh
 bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle
 bindsym XF86TouchpadToggle exec --no-startup-id sh ~/Scripts/Bash/control/trackpad_toggle.sh

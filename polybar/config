@@ -4,7 +4,7 @@
 
 [section/bar]
 monitor = 
-font-0 = artwiz snap.se:pixelsize=9:antialiasing=false;2
+font-0 = artwiz snap.se:pixelsize=10:antialiasing=false;2
 font-1 = Wuncon Siji:size=10;2
 font-2 = Unifont:size=8;1
 cursor-click = pointer
@@ -68,7 +68,7 @@ label-focused-overline = ${xrdb:color1}
 label-focused-padding = 2
 ;label-unfocused = %icon%%index%
 label-unfocused = %index%
-label-unfocused-foreground = ${xrdb:color8}
+label-unfocused-foreground = ${xrdb:foreground}
 label-unfocused-padding = 2
 ;label-visible = %icon%%index%
 label-visible = %index%
@@ -134,7 +134,7 @@ label = %date%%time%
 
 [module/spotify]
 type = custom/script
-exec = "~/Scripts/Bash/spotifyinfo.sh"
+exec = "~/Scripts/Bash/status/spotifyinfo.sh"
 exec-if = if [ "$(playerctl -p spotify status)" = "Playing" ] || [ "$(playerctl -p spotify status)" = "Paused" ]; then true; else false; fi
 ;click-left = playerctl -p spotify play-pause
 interval = 0.5
