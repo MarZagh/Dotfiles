@@ -118,13 +118,13 @@ bindsym $mod+n scratchpad show
 ### WORKSPACES
 
 set $ws1 "1:Browser"
-set $ws2 "2:Terminal"
-set $ws3 "3:Terminal"
+set $ws2 "2:Code"
+set $ws3 "3:Reader"
 set $ws4 "4:Terminal"
 set $ws5 "5:Terminal"
 set $ws6 "6:Terminal"
 set $ws7 "7:Terminal"
-set $ws8 "8:Messaging"
+set $ws8 "8:Terminal"
 set $ws9 "9:Mail"
 set $ws10 "10:Music"
 
