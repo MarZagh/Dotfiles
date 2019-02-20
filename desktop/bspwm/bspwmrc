@@ -1,0 +1,48 @@
+#! /bin/sh
+
+sxhkd &
+sh ~/.screenlayout/auto.sh
+sh ~/.config/polybar/launch.sh
+urxvtd & 
+
+if  xrandr | grep "VGA-1 connected"; then
+    bspc monitor VGA-1 -d 1 2 3 4
+    bspc monitor LVDS-1 -d 5 6 7 8
+else
+    bspc monitor -d 1 2 3 4 5 6 7 8
+fi
+
+compton &
+sh ~/bin/misc/launch_dunst.sh
+
+#
+## config
+#
+
+source ~/.cache/wal/colors.sh
+
+# colors
+bspc config active_border_color   $color8
+bspc config normal_border_color   $color8
+bspc config focused_border_color  $foreground
+bspc config presel_feedback_color $color1
+
+# border
+bspc config border_width         2
+
+# gaps and padding
+bspc config window_gap          30
+bspc config top_padding         61
+bspc config right_padding       10
+bspc config bottom_padding      10
+bspc config left_padding        10
+
+bspc config split_ratio          0.5
+
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer true
+bspc config pointer_follows_monitor true
+
+# rules
+bspc rule -a Zathura state=tiled #for whatever reason zathura starts floating by default

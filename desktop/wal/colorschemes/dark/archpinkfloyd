@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/mario/Wallpapers/arch/archpinkfloyd.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#212121",
+        "foreground": "#d0d0d0",
+        "cursor": "#d0d0d0"
+    },
+    "colors": {
+        "color0": "#151515",
+        "color1": "#ff5666",
+        "color2": "#95d448",
+        "color3": "#f2fc67",
+        "color4": "#66bdf3",
+        "color5": "#ac9ec2",
+        "color6": "#f6c948",
+        "color7": "#d0d0d0",
+        "color8": "#505050",
+        "color9": "#ff5666",
+        "color10": "#95d448",
+        "color11": "#f2fc67",
+        "color12": "#66bdf3",
+        "color13": "#ac9ec2",
+        "color14": "#f6c948",
+        "color15": "#f5f5f5"
+    }
+}

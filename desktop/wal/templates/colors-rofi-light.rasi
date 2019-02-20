@@ -1,6 +1,6 @@
 * {{
     active-background: {color2};
-    active-foreground: @background;
+    active-foreground: @foreground;
     normal-background: @background;
     normal-foreground: @foreground;
     urgent-background: {color1};
@@ -14,31 +14,30 @@
     alternate-urgent-foreground: @foreground;
 
     selected-active-background: {color1};
-    selected-active-foreground: {background};
+    selected-active-foreground: @foreground;
     selected-normal-background: {color2};
-    selected-normal-foreground: {background};
+    selected-normal-foreground: @foreground;
     selected-urgent-background: {color3};
-    selected-urgent-foreground: {background};
+    selected-urgent-foreground: @foreground;
 
     background-color: @background;
     background: #00000000;
-    foreground: {foreground};
+    foreground: {background};
     border-color: @background;
     spacing: 2;
 }}
 
-
 #window {{
-    background-color: {background}D9;
-    border: 2;
-    border-color: {background}D9;
-    padding: 0;
+    background-color: {foreground}E6;
+    border: 1;
+    border-color: {color8};
+    padding: 2.5ch;
+    border-radius: 10px;
 }}
 
 #mainbox {{
-    border: 2;
-    border-color: @foreground;
-    padding: 20;
+    border: 0;
+    padding: 0;
 }}
 
 #message {{
@@ -51,11 +50,11 @@
     text-color: @foreground;
 }}
 
-inputbar {{
+#inputbar {{
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }}
 
-textbox-prompt-colon {{
+#textbox-prompt-colon {{
     expand: false;
     str: ":";
     margin: 0px 0.3em 0em 0em;
@@ -66,14 +65,15 @@ textbox-prompt-colon {{
     fixed-height: 0;
     border: 2px 0px 0px;
     border-color: @border-color;
-    spacing: 2px;
-    scrollbar: true;
+    spacing: 0px;
+    scrollbar: false;
     padding: 2px 0px 0px;
 }}
 
 #element {{
     border: 0;
-    padding: 1px;
+    border-radius: 2px;
+    padding: 10px;
 }}
 
 #element.normal.normal {{
@@ -122,9 +122,12 @@ textbox-prompt-colon {{
 }}
 
 #scrollbar {{
+    background-color: {color8};
     width: 4px;
     border: 0;
-    handle-width: 8px;
+    border-radius: 4px;
+    handle-width: 16px;
+    handle-color: {background};
     padding: 0;
 }}
 
@@ -145,7 +148,7 @@ textbox-prompt-colon {{
 #inputbar {{
     spacing: 0;
     text-color: @normal-foreground;
-    padding: 1px;
+    padding: 15px;
 }}
 
 #case-indicator {{

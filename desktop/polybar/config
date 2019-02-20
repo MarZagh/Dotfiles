@@ -1,0 +1,245 @@
+; New config file for polybar on 03/02/2019
+
+; Simple bar setup. Just top bar, left i3 and window info, middle clock and music info, right network, battery and volume. artwiz font + Siji icons.
+
+[section/bar]
+monitor = 
+font-0 = Roboto Mono:pixelsize=18:antialiasing=false; 3
+font-1 = Symbols Nerd Font:size=18;3
+
+[bar/main]
+monitor = LVDS-1
+inherit = section/bar
+override-redirect = false
+bottom = false
+fixed-center = true
+width = 100%
+height = 27
+;background = #00322622
+background = ${xrdb:polybarBackground:#fff}
+foreground = ${xrdb:foreground}
+module-margin = 0
+modules-left = time
+modules-center = bspwm
+modules-right = spotify mpd pulseaudio ethernet wlan bat0 bat1
+separator = 
+spacing = 0
+locale =
+wm-restack = bspwm
+tray-position = right
+line-size = 2
+border-size = 12
+border-color = ${root.background}
+padding = 1
+
+[bar/second]
+inherit = bar/main
+monitor = VGA-1
+monitor-fallback = 
+padding-right = 1
+padding-left = 0
+
+[global/wm]
+margin-bottom = 0
+margin-top = 0
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = false
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+format-foreground = 
+format-background =
+format-underline = 
+format-overline =
+format-spacing =
+format-padding = 1
+format-margin =
+format-offset =
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+fuzzy-match = true
+format = <label-state> <label-mode>
+label-focused = %icon% %name%
+label-focused-underline = ${xrdb:color1}
+label-focused-padding = 2
+label-unfocused = %icon% %index%
+label-unfocused-padding = 2
+label-visible = %icon% %name%
+label-visible-foreground = ${xrdb:color1}
+label-visible-padding = 2
+label-urgent = %icon% %index%
+label-urgent-foreground = ${xrdb:background}
+label-urgent-background = ${xrdb:foreground}
+label-urgent-padding = 2
+ws-icon-0 = "Browser;"
+ws-icon-1 = "Terminal;"
+ws-icon-2 = "Code;"
+ws-icon-3 = "Messaging;"
+ws-icon-4 = "Mail;"
+ws-icon-5 = "Music;"
+ws-icon-6 = "Games;"
+ws-icon-7 = "Reader;"
+
+[module/wmderland]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-click = true
+enable-scroll = false
+format = <label-state>
+label-active = 
+label-active-padding = 1
+label-occupied = 
+label-occupied-padding = 1
+label-urgent = 
+label-urgent-foreground = ${xrdb:background}
+label-urgent-background = ${xrdb:foreground}
+label-urgent-padding = 2
+label-empty = 
+
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = true
+inline-mode = false
+enable-click = true
+enable-scroll = true
+fuzzy-match = true
+format = <label-state> 
+label-focused = 綠
+label-focused-padding = 1
+label-occupied = 祿
+label-occupied-padding = 1
+label-urgent-padding = 1
+label-empty = 祿
+label-empty-foreground = ${xrdb:color8}
+label-empty-padding = 1
+ws-icon-0 = "Browser;"
+ws-icon-1 = "Terminal;"
+ws-icon-2 = "Code;"
+ws-icon-3 = "Messaging;"
+ws-icon-4 = "Mail;"
+ws-icon-5 = "Music;"
+ws-icon-6 = "Games;"
+ws-icon-7 = "Reader;"
+
+[module/title]
+type = internal/xwindow
+format = %{A1:rofi -show drun:}<label>%{A} 
+format-padding = 0
+format-foreground = ${xrdb:color7}
+label = "%title:0:50:...%"
+label-empty = 
+
+[module/time]
+type = internal/date
+interval = 0.5
+date = 
+date-alt =
+time = %I:%M %p
+time-alt = %I:%M %p
+format = <label>
+label = %time%
+
+[module/spotify]
+type = custom/script
+exec = "~/bin/misc/spotifyinfo.sh"
+exec-if = if [ "$(playerctl -p spotify status)" = "Playing" ] || [ "$(playerctl -p spotify status)" = "Paused" ]; then true; else false; fi
+interval = 0.5
+
+[module/mpd]
+type = internal/mpd
+format-online = <toggle>
+format-offline =
+label-song = %artist% - %title%
+label-time = (%elapsed%/%total%)
+icon-play-foreground = ${xrdb:color8}
+icon-play = 
+icon-pause = 
+
+[section/network]
+type = internal/network
+interval = 3.0
+
+[module/ethernet]
+inherit = section/network
+interface = enp0s25
+format-disconnected-foreground = ${xrdb:color8}
+;format-disconnected = 
+format-connected = 
+format-packetloss = 
+
+[module/wlan]
+inherit = section/network
+interface = wlp3s0
+format-disconnected-foreground = ${xrdb:color8}
+;format-disconnected = 睊
+format-connected = 
+ramp-signal-font = 2
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+
+
+
+[section/batterymodule]
+type = internal/battery
+poll-interval = 5
+time-format = %H:%M
+format-charging = <ramp-capacity> 
+format-discharging = <ramp-capacity>
+format-full = 
+ramp-capacity-0-foreground = ${xrdb:color1}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+
+[module/bat0]
+inherit = section/batterymodule
+battery = BAT0
+adapter = AC
+
+[module/bat1]
+inherit = section/batterymodule
+battery = BAT1
+adapter = AC
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = true
+interval = 5
+format-volume = <ramp-volume>
+format-muted = <ramp-volume>
+format-muted-foreground = ${xrdb:color8}
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+
+[module/menu]
+type = custom/menu
+expand-right = false
+menu-0-0 = 
+menu-0-0-exec = rofi -show drun -display-drun Search
+menu-0-1 = 
+menu-0-1-exec = python ~/Scripts/Python/logout.py
+label-close = 
+label-open = ""
+label-separator = "  "
