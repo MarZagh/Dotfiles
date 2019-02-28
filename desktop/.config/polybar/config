@@ -62,52 +62,6 @@ format-padding = 1
 format-margin =
 format-offset =
 
-[module/i3]
-type = internal/i3
-pin-workspaces = true
-strip-wsnumbers = true
-index-sort = true
-enable-click = true
-fuzzy-match = true
-format = <label-state> <label-mode>
-label-focused = %icon% %name%
-label-focused-underline = ${xrdb:color1}
-label-focused-padding = 2
-label-unfocused = %icon% %index%
-label-unfocused-padding = 2
-label-visible = %icon% %name%
-label-visible-foreground = ${xrdb:color1}
-label-visible-padding = 2
-label-urgent = %icon% %index%
-label-urgent-foreground = ${xrdb:background}
-label-urgent-background = ${xrdb:foreground}
-label-urgent-padding = 2
-ws-icon-0 = "Browser;"
-ws-icon-1 = "Terminal;"
-ws-icon-2 = "Code;"
-ws-icon-3 = "Messaging;"
-ws-icon-4 = "Mail;"
-ws-icon-5 = "Music;"
-ws-icon-6 = "Games;"
-ws-icon-7 = "Reader;"
-
-[module/wmderland]
-type = internal/xworkspaces
-pin-workspaces = true
-enable-click = true
-enable-scroll = false
-format = <label-state>
-label-active = 
-label-active-padding = 1
-label-occupied = 
-label-occupied-padding = 1
-label-urgent = 
-label-urgent-foreground = ${xrdb:background}
-label-urgent-background = ${xrdb:foreground}
-label-urgent-padding = 2
-label-empty = 
-
-
 [module/bspwm]
 type = internal/bspwm
 pin-workspaces = true

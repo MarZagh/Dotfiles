@@ -49,10 +49,6 @@ nnoremap <C-P> "+p
 " Bibliography file for LaTeX
 map <leader>b :vsp<space>$BIB<CR>
 
-" Guide navigation
-inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-map <Space><Tab> <Esc>/<++><Enter>"_c4l
 
 " PLUGINS 
 call plug#begin('~/.vim/plugged')
@@ -63,10 +59,3 @@ call plug#end()
 map <leader>g :Goyo 66%<CR>
 
 
-""" SNIPPETS
-
-" Programming
-autocmd Filetype C,cpp,python,java,bash,sh inoremap ( ()<++><Esc>T(i
-autocmd Filetype C,cpp,python,java,bash,sh inoremap [ []<++><Esc>T[i
-autocmd Filetype C,cpp,python,java,bash,sh inoremap { {}<++><Esc>T{i
-autocmd Filetype C,cpp,python,java,bash,sh inoremap " ""<++><Esc>T"hi

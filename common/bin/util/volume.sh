@@ -23,20 +23,26 @@ msgId="991049"
 
 amixer set Master "$@" >/dev/null
 
- # Query amixer for the current volume and whether or not the speaker is muted
- volume="$(amixer get Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g')"
- mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
- if [[ $volume == 0 || "$mute" == "off" ]]; then
-     # Show the sound muted notification
-     dunstify -a "changeVolume" -u low -i audio-volume-muted -r "$msgId" "Volume muted: ${volume}%"
- elif (( $volume <=33 )); then
-     dunstify -a "changeVolume" -u low -i audio-volume-low -r "$msgId" \
-     "Volume: ${volume}%" 
- elif (( $volume <=67 )); then
-     dunstify -a "changeVolume" -u low -i audio-volume-medium -r "$msgId" \
-     "Volume: ${volume}%" 
- else
-     # Show the volume notification
-     dunstify -a "changeVolume" -u low -i audio-volume-high -r "$msgId" \
-     "Volume: ${volume}%" 
- fi
+
+# Query amixer for the current volume and whether or not the speaker is muted
+volume="$(amixer get Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g')"
+# fix weird audio issue, so both channels are equally balanced
+amixer set Master $volume%
+                         
+mute="$(amixer get Maste#r | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+if [[ $volume == 0 || "$kmute" == "off" ]]; then
+    # Show the sound mut ed notification
+    dunstify -a "changeV olume" -u low -i audio-volume-muted -r "$msgId" "Volume muted: ${volume}%"
+elif (( $volume <=33 ));  then
+    dunstify -a "changeV olume" -u low -i audio-volume-low -r "$msgId" \
+    "Volume: ${volume}%"  
+elif (( $volume <=67 ));  then
+    dunstify -a "changeV olume" -u low -i audio-volume-medium -r "$msgId" \
+    "Volume: ${volume}%"  
+else                     
+    # Show the volume no tification
+    dunstify -a "changeV olume" -u low -i audio-volume-high -r "$msgId" \
+    "Volume: ${volume}%"  
+fi                       
+                         
+                         

@@ -19,12 +19,12 @@ options  = [
         ]
 
 commands = [
-        'sh ~/Scripts/Bash/menu/shutdown.sh', 
+        '~/bin/util/shutdown.sh', 
         'reboot', 
-        'sh ~/Scripts/Bash/menu/sleep.sh', 
-        'sh ~/Scripts/Bash/menu/hibernate.sh',
-        'sh ~/Scripts/Bash/menu/quit.sh', 
-        'sh ~/Scripts/Bash/menu/lock.sh'
+        '~/bin/util/sleep.sh', 
+        '~/bin/util/hibernate.sh',
+        '~/bin/util/quit.sh', 
+        '~/bin/util/lock.sh'
         ]
 
 index, key = r.select('Exit', 

@@ -18,7 +18,7 @@ fi
 
 # Make pywal work
 #(cat ~/.cache/wal/sequences &)
-export PATH="${PATH}:${HOME}/.local/bin/"
+export PATH="${PATH}:${HOME}/.local/bin/:${HOME}/bin/util/:${HOME}/bin/misc/"
 source /usr/share/bash-completion/bash_completion
 shopt -s checkwinsize
 set -o vi
